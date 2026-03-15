@@ -1,110 +1,397 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Portafolio de Ayman Mouzakki</title>
-    <link rel="stylesheet" href="estilo.css" />
-  </head>
-  <body>
-    <header>
-      <nav>
-        <ul>
-          <li><a href="#" class="cf-name">Portafolio de Ayman Mouzakki</a></li>
-          <div class="center-cf">
-            <li>Sobre Mi</li>
-            <button>Contactame</button>
-          </div>
-        </ul>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ayman Mouzakki · portfolio</title>
+  <style>
+    /* Base reset & typography */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth; /* for smooth scrolling when clicking menu links */
+      font-family: system-ui, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+    }
+
+    body {
+      background: #f5f7fb;
+      color: #1e293b;
+      line-height: 1.5;
+      padding: 2rem 1rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .page {
+      max-width: 1280px;
+      width: 100%;
+    }
+
+    /* ----- HEADER ----- */
+    header {
+      background: white;
+      border-radius: 32px;
+      padding: 1.5rem 2.5rem;
+      margin-bottom: 3rem;
+      box-shadow: 0 10px 25px -5px rgba(0,0,0,0.05), 0 8px 10px -6px rgba(0,0,0,0.02);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      border: 1px solid rgba(226, 232, 240, 0.6);
+      backdrop-filter: blur(2px);
+    }
+
+    .my-name {
+      font-size: 2rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      background: linear-gradient(135deg, #0f172a, #334155);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .menu-projects {
+      display: flex;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .menu-projects a {
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1.2rem;
+      color: #475569;
+      padding: 0.4rem 0.2rem;
+      border-bottom: 3px solid transparent;
+      transition: 0.2s ease;
+    }
+
+    .menu-projects a:hover {
+      color: #0f172a;
+      border-bottom-color: #3b82f6;
+    }
+
+    /* ----- PROJECT CARDS (one under another) ----- */
+    .project-card {
+      padding: 2.5rem 2.5rem 2.8rem 2.5rem;
+      margin-bottom: 3.5rem;
+      transition: transform 0.2s;
+    }
+
+    .project-card:last-of-type {
+      margin-bottom: 0.5rem;
+    }
+
+    .project-title {
+      font-size: 2.2rem;
+      font-weight: 650;
+      letter-spacing: -0.01em;
+      color: #0b1e33;
+      margin-bottom: 0.75rem;
+    }
+
+    .project-description {
+      font-size: 1.2rem;
+      color: #334155;
+      max-width: 85%;
+      margin-bottom: 1.6rem;
+      line-height: 1.6;
+    }
+
+    .github-link {
+      display: inline-block;
+      background: #0f172a;
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+      padding: 0.8rem 2rem;
+      border-radius: 50px;
+      margin-bottom: 2rem;
+      box-shadow: 0 6px 14px rgba(30,64,175,0.25);
+      transition: background 0.2s, transform 0.1s;
+      border: 1px solid #1e293b;
+      font-size: 1.1rem;
+    }
+
+    .github-link:hover {
+      background: #1e293b;
+      transform: scale(1.02);
+    }
+
+    .github-link i {
+      margin-right: 8px;
+      font-style: normal;
+      font-weight: 400;
+    }
+
+    /* ----- CARRUSEL ----- */
+    .jocarsacarrusel {
+      width: 100%;       
+      max-width: 1280px;
+      height: auto;
+      aspect-ratio: 1280 / 720;  
+      overflow: hidden;
+      position: relative;
+      border-radius: 24px;
+      box-shadow: 0px 4px 10px rgba(0,0,0,0.2);
+      margin-top: 1rem;
+      background: #0b1a2a; 
+    }
+
+    .jocarsacarrusel section {
+      width: auto;
+      display: flex;
+      left: 0px;
+      transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      position: relative;
+      height: 100%;
+    }
+
+    .jocarsacarrusel section img {
+      width: 1280px;           
+      max-width: 1280px;
+      height: 100%;
+      object-fit: cover;
+      flex-shrink: 0;
+      background: #1e2b3a;
+    }
+
+    .jocarsacarrusel button {
+      border: none;
+      background: rgba(255, 255, 255, 0.65);
+      backdrop-filter: blur(4px);
+      width: 60px;
+      height: 60px;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      border-radius: 60px;
+      font-size: 36px;
+      line-height: 60px;
+      text-align: center;
+      cursor: pointer;
+      z-index: 20;
+      color: #0f172a;
+      font-weight: 400;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      transition: all 0.25s;
+      border: 1px solid rgba(255,255,255,0.6);
+    }
+
+    .jocarsacarrusel button:hover {
+      background: rgba(255, 255, 255, 1);
+      transform: translateY(-50%) scale(1.05);
+    }
+
+    .jocarsacarrusel button:first-of-type {
+      left: 20px;
+    }
+
+    .jocarsacarrusel button:last-of-type {
+      right: 20px;
+    }
+
+    /* footer or small spacing */
+    .watermark {
+      margin-top: 4rem;
+      text-align: center;
+      color: #94a3b8;
+      border-top: 1px dashed #cbd5e1;
+      padding-top: 2rem;
+      font-size: 1rem;
+    }
+
+    /* responsiveness: smaller font & button size */
+    @media (max-width: 700px) {
+      header {
+        flex-direction: column;
+        align-items: start;
+        gap: 1rem;
+        padding: 1.5rem;
+      }
+      .menu-projects {
+        gap: 1.2rem;
+      }
+      .project-title {
+        font-size: 1.9rem;
+      }
+      .project-description {
+        max-width: 100%;
+        font-size: 1.1rem;
+      }
+      .jocarsacarrusel button {
+        width: 44px;
+        height: 44px;
+        font-size: 28px;
+        line-height: 44px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <!-- 1. HEADER with name & project menu -->
+    <header id="home">
+      <span class="my-name">Ayman Mouzakki</span>
+      <nav class="menu-projects">
+        <a href="#project-KOOK">✦ KOOK - Kitchen Ordering</a>
+        <a href="#project-WePlan">✦ WePlan</a>
+        <a href="#project-nebula">✦ Nebula Store</a>
       </nav>
     </header>
-    <section>
-      <article>
-        <div class="banner-main">
-          <div class="img-div">
-            <img class="avatar" />
-            <div class="hover">
-              <img src="CV picture.jpg" alt="" />
-            </div>
-          </div>
-          <h1>Hello World </h1>
 
-          <p>Soy Ayman, un desarrollador web apasionado por crear experiencias digitales atractivas y funcionales. Bienvenido a mi portafolio en línea, donde comparto mis proyectos, habilidades y trayectoria profesional.
-          </p>
-        <div class="red-social-manage">
-          <div class="My-Github">
-              <a href="https://github.com/aymanmzkk">My Github</a>
-            </div>
-            <div class="Mis-Proyectos">
-              <a href="https://aymanmzkk.github.io/Portafolio/">Mis Proyectos</a>
-            </div>
-            <div class="Mi-Curriculum">
-              <a href="https://aymanmzkk.github.io/Curriculum/">Mi Curriculum</a>
-            </div>
-          </div>
-        </div>
-        <div class="about-banner">
-          <img class="hero" src="" alt="" />
-          <div class="card">
-            <div class="content-text">
-              <h1>Sobre mi</h1>
-              <p>
-                I am a developer passionate about creating elegant solutions and solving complex problems. 
-                My greatest satisfaction comes from the methodical process of debugging, 
-                iterating, and finally seeing the code work correctly—a type of logical 
-                magic that never ceases to motivate me. I enjoy both architecting robust 
-                systems and hunting for the most efficient solution, one line of logic at a time.
-              </p>
-            </div>
+    <!-- PROJECTS LIST (one after another) -->
 
-            <div class="content-image">
-              <img src="CV picture.jpg" alt="" />
-            </div>
-          </div>
-        </div>
-        <div class="contact-banner">
-          <img src="Contact me.jpg" alt="" />
-          <h1>Contact Me!.</h1>
-          <p>Aqui puedes poner tus datos, para contactarme!</p>
+    <!-- PROJECT 1 - KOOK -->
+    <section id="project-KOOK" class="project-food">
+      <h2 class="project-title">KOOK - Kitchen Ordering</h2>
+      <p class="project-description">
+        KOOK es una aplicación web que permite a usuarios pedir kits de cocina con ingredientes pre-medidos exactamente para preparar recetas sin errores.
+      </p>
+      <a href="https://github.com/aymanmzkk/kook" target="_blank" class="github-link">
+        <i>⌨️</i> github / kook
+      </a>
 
-          <div class="contact-inputs">
-            <div class="input-div">
-              <label>Nombre</label>
-              <input type="text" />
-            </div>
-
-            <div class="input-div">
-              <label>Email</label>
-              <input type="text" />
-            </div>
-          </div>
-          <div class="textarea-div">
-            <label>Mensaje</label>
-            <textarea></textarea>
-          </div>
-          <button>Enviar</button>
-        </div>
-      </article>
+      <!-- CARRUSEL -->
+      <div class="jocarsacarrusel">
+        <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=1280&h=720&fit=crop" alt="code on screen">
+        <img src="https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?w=1280&h=720&fit=crop" alt="UI components">
+        <img src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=1280&h=720&fit=crop" alt="coding laptop">
+        <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=1280&h=720&fit=crop" alt="server room">
+        <img src="https://images.unsplash.com/photo-1522252234503-e356532cafd5?w=1280&h=720&fit=crop" alt="developer">
+        <img src="https://images.unsplash.com/photo-1571171637578-41bc2dd41cd2?w=1280&h=720&fit=crop" alt="vs code">
+        <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=1280&h=720&fit=crop" alt="macbook">
+        <img src="https://images.unsplash.com/photo-1618477247222-acbdb0e159b3?w=1280&h=720&fit=crop" alt="analytics">
+      </div>
     </section>
 
-    <footer>
-      <nav>
-        <ul>
-          <p class="name">Portafolio de Ayman Mouzakki</p>
-          <p>Designed with <\3 by <a href="https://www.linkedin.com/in/ayman-mouzakki-a1b63639b/">@aymanmzkk</a></p>
-          <div class="red-social">
-            <div class="card-red">
-              <i class="bx bxl-facebook-circle"></i>
-            </div>
-            <div class="card-red">
-              <i class="bx bxl-twitter"></i>
-            </div>
-            <div class="card-red">
-              <i class="bx bxl-github"></i>
-            </div>
-          </div>
-        </ul>
-      </nav>
-    </footer>
-  </body>
+    <!-- PROJECT 2 - WePlan -->
+    <section id="project-WePlan" class="project-card">
+      <h2 class="project-title">WePlan</h2>
+      <p class="project-description">
+        La idea es crear una aplicación en la que las personas puedan buscar la categoría o el tipo de actividad que desean realizar y unirse a otras personas, y también puedan crear actividades a partir de sus propias ideas y publicarlas para que otras personas se unan a ellas.
+      </p>
+      <a href="https://github.com/BryanGF-hg/WePlan" target="_blank" class="github-link">
+        <i>🌲</i> github / weplan
+      </a>
+      <div class="jocarsacarrusel">
+        <img src="https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=1280&h=720&fit=crop" alt="design system">
+        <img src="https://images.unsplash.com/photo-1504639725590-34d0984388b5?w=1280&h=720&fit=crop" alt="graphql">
+        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1280&h=720&fit=crop" alt="dashboard">
+        <img src="https://images.unsplash.com/photo-1518432031352-d6fc5c10da5a?w=1280&h=720&fit=crop" alt="cms mock">
+        <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1280&h=720&fit=crop" alt="team">
+        <img src="https://images.unsplash.com/photo-1559028012-481c04fa702d?w=1280&h=720&fit=crop" alt="notebook">
+        <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=1280&h=720&fit=crop" alt="wireframe">
+        <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=1280&h=720&fit=crop" alt="analytics">
+      </div>
+      <div class="carousel-note"><span>🖱️ drag? use ◀ ▶</span></div>
+    </section>
+
+    <!-- PROJECT 3 - Nebula Store -->
+    <section id="project-nebula" class="project-card">
+      <h2 class="project-title">Nebula e‑commerce starter</h2>
+      <p class="project-description">
+        Next.js, Stripe, Sanio. Fully functional store with cart, auth, and dashboard. Deployed on Vercel.
+      </p>
+      <a href="https://github.com/aymanmouzakki/nebula-store" target="_blank" class="github-link">
+        <i>🛒</i> github / nebula-store
+      </a>
+      <div class="jocarsacarrusel">
+        <img src="https://images.unsplash.com/photo-1472851294608-062f824d29cc?w=1280&h=720&fit=crop" alt="shop">
+        <img src="https://images.unsplash.com/photo-1523381210434-271e8be1f52b?w=1280&h=720&fit=crop" alt="clothes">
+        <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=1280&h=720&fit=crop" alt="storefront">
+        <img src="https://images.unsplash.com/photo-1507842217343-583bb7270b66?w=1280&h=720&fit=crop" alt="library">
+        <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=1280&h=720&fit=crop" alt="product">
+        <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=1280&h=720&fit=crop" alt="headphones">
+        <img src="https://images.unsplash.com/photo-1572635196237-14b3f281503f?w=1280&h=720&fit=crop" alt="sunglasses">
+        <img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?w=1280&h=720&fit=crop" alt="shopping">
+      </div>
+      <div class="carousel-note"><span>📸 project screenshots carousel</span></div>
+    </section>
+
+    <div class="watermark">
+      Ayman Mouzakki · full‑stack projects · 2026
+    </div>
+  </div>
+
+  <!-- JavaScript for carousels (identical logic as prompt, but applied to each .jocarsacarrusel) -->
+  <script>
+    (function() {
+      // select all carousel containers
+      const carousels = document.querySelectorAll('.jocarsacarrusel');
+
+      carousels.forEach(container => {
+        // get the images inside this specific container
+        let rawImages = container.querySelectorAll('img');
+        if (rawImages.length === 0) return;
+
+        // remove images from DOM (they are still in rawImages NodeList)
+        rawImages.forEach(img => img.remove());
+
+        // create new section wrapper
+        let section = document.createElement('section');
+        section.style.left = '0px';
+        container.appendChild(section);
+
+        // re-append images inside section
+        rawImages.forEach(img => section.appendChild(img));
+
+        // create back & forward buttons
+        let backBtn = document.createElement('button');
+        backBtn.textContent = '◀';
+        container.appendChild(backBtn);
+
+        let forwardBtn = document.createElement('button');
+        forwardBtn.textContent = '▶';
+        container.appendChild(forwardBtn);
+
+        // carousel state
+        let counter = 0;
+        const imageWidth = 1280; // fixed as original design
+        const maxCounter = -(rawImages.length - 1); // e.g., if 8 images, left can go to -7*1280
+
+        // move function
+        function updateCarousel() {
+          // clamp counter (free sliding, but we prevent going beyond first/last)
+          if (counter > 0) counter = 0;
+          if (counter < -(rawImages.length - 1)) counter = -(rawImages.length - 1);
+          section.style.left = (counter * imageWidth) + 'px';
+        }
+
+        forwardBtn.onclick = () => {
+          counter--;  // goes left (negative)
+          if (counter < -(rawImages.length - 1)) counter = -(rawImages.length - 1);
+          updateCarousel();
+        };
+
+        backBtn.onclick = () => {
+          counter++;  // goes right (positive)
+          if (counter > 0) counter = 0;
+          updateCarousel();
+        };
+
+        // optional: if container width changes, we could adjust, but we keep original logic.
+        // also prevent button default
+        backBtn.onmousedown = (e) => e.preventDefault();
+        forwardBtn.onmousedown = (e) => e.preventDefault();
+      });
+    })();
+  </script>
+
+  <!-- small addition: fix button event conflicts & touchscreens friendly -->
+  <style>
+    .jocarsacarrusel button {
+      user-select: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+    /* optional to make images visible while loading */
+    .jocarsacarrusel section img {
+      background: #1e2b3a;
+    }
+  </style>
+</body>
 </html>
